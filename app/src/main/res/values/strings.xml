@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Coffee App</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="menu_icon">Menu Icon</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="find_your_coffee">Find Your Coffee...</string>
+    <string name="close_icon">Close icon</string>
+    <string name="coffee_image">Coffee Image</string>
+</resources>
