@@ -1,9 +1,5 @@
 package com.sekhgmainuddin.coffeeapp
 
-import android.content.res.AssetManager
-import android.content.res.loader.AssetsProvider
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,61 +8,43 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonColors
-import androidx.compose.material3.IconButtonDefaults
-import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
-import androidx.compose.material3.LocalMinimumTouchTargetEnforcement
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarDefaults
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
+import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
+import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedBlack
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedDarkGrey
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedGrey
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedLightBlack
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedLightGrey
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedWhite
+import com.sekhgmainuddin.coffeeapp.features.home.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +60,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 @Preview
 fun MainComposable(modifier: Modifier = Modifier) {
+    var selectedBottomBarItem by remember {
+        mutableIntStateOf(0)
+    }
 
     CoffeeAppTheme {
         Scaffold(
@@ -89,41 +70,14 @@ fun MainComposable(modifier: Modifier = Modifier) {
             topBar = {
                 TopAppBar(
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = ThemedBlack,
+                        containerColor = AppColors.ThemedBlack,
                     ),
                     title = {
-                        IconButton(
+                        AppIconButton(
                             onClick = { /*TODO*/ },
-                        ) {
-                            Icon(
-                                tint = ThemedWhite.copy(alpha = 0.18f),
-                                painter = painterResource(id = R.drawable.menu_icon),
-                                contentDescription = stringResource(R.string.menu_icon),
-                                modifier = Modifier
-                                    .size(35.dp)
-                                    .background(
-                                        brush = Brush.linearGradient(
-                                            colors = listOf(
-                                                ThemedDarkGrey.copy(alpha = 0.1f),
-                                                ThemedDarkGrey
-                                            ),
-                                            start = Offset(100f, 100f),
-                                            end = Offset(0f, 0f)
-                                        ),
-                                        shape = RoundedCornerShape(
-                                            corner = CornerSize(10.dp),
-                                        ),
-                                    )
-                                    .border(
-                                        border = BorderStroke(
-                                            color = ThemedDarkGrey,
-                                            width = 1.dp,
-                                        ),
-                                        shape = RoundedCornerShape(corner = CornerSize(10.dp)),
-                                    )
-                                    .padding(10.dp),
-                            )
-                        }
+                            iconId = R.drawable.menu_icon,
+                            contentDescriptionId = R.string.menu_icon,
+                        )
                     },
                     actions = {
                         OutlinedIconButton(
@@ -134,7 +88,7 @@ fun MainComposable(modifier: Modifier = Modifier) {
                             shape = RoundedCornerShape(10.dp),
                             border = BorderStroke(
                                 width = 1.dp,
-                                color = ThemedDarkGrey,
+                                color = AppColors.ThemedDarkGrey,
                             ),
                         ) {
                             Image(
@@ -146,8 +100,53 @@ fun MainComposable(modifier: Modifier = Modifier) {
                     },
                 )
             },
-        ) {
+            bottomBar = {
+                NavigationBar(
+                    containerColor = Color.Transparent,
+                ) {
+                    val bottomTabs = listOf(
+                        Pair(
+                            R.drawable.home,
+                            R.string.home_screen,
+                        ),
+                        Pair(
+                            R.drawable.cart_icon,
+                            R.string.cart_screen,
+                        ),
+                        Pair(
+                            R.drawable.favourites_icon,
+                            R.string.favourites_screen,
+                        ),
+                        Pair(
+                            R.drawable.notification_icon,
+                            R.string.order_history_screen,
+                        ),
+                    )
 
+                    bottomTabs.forEachIndexed { index, item ->
+                        NavigationBarItem(
+                            icon = {
+                                Icon(
+                                    painter = painterResource(id = item.first),
+                                    contentDescription = stringResource(item.second),
+                                )
+                            },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = AppColors.SecondaryThemedColor,
+                                unselectedIconColor = AppColors.ThemedGrey,
+                                indicatorColor = AppColors.ThemedBlack,
+                            ),
+                            alwaysShowLabel = false,
+                            selected = selectedBottomBarItem == index,
+                            onClick = { selectedBottomBarItem = index },
+                        )
+                    }
+                }
+            }
+        ) { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)) {
+                HomeScreen()
+            }
         }
     }
 }

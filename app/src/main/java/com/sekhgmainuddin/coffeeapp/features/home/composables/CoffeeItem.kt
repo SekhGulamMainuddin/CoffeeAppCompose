@@ -1,7 +1,9 @@
 package com.sekhgmainuddin.coffeeapp.features.home.composables
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,11 +12,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -23,20 +32,24 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sekhgmainuddin.coffeeapp.R
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextR10
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextR14
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextS10
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextS16
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextStyles
+import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceComposable
+import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedBlack
-import com.sekhgmainuddin.coffeeapp.core.theme.ThemedWhite
 
 @Preview
 @Composable
 fun CoffeeItem(modifier: Modifier = Modifier) {
     return CoffeeAppTheme {
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .height(245.dp)
                 .width(150.dp)
                 .clip(RoundedCornerShape(24.dp))
@@ -45,19 +58,19 @@ fun CoffeeItem(modifier: Modifier = Modifier) {
                         start = Offset(0f, 0f),
                         end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY),
                         colors = listOf(
-                            ThemedBlack.copy(alpha = 0.2f),
-                            ThemedBlack,
+                            AppColors.ThemedLightBlack,
+                            AppColors.ThemedBlack,
                         ),
                     ),
                 )
                 .padding(
-                    10.dp,
+                    12.dp,
                 )
-                .padding(bottom = 20.dp),
+                .clickable { },
         ) {
             Column {
                 Image(
-                    painter = painterResource(id = R.drawable.robusta_been),
+                    painter = painterResource(id = R.drawable.cappuchino),
                     contentDescription = stringResource(
                         R.string.coffee_image
                     ),
@@ -75,29 +88,75 @@ fun CoffeeItem(modifier: Modifier = Modifier) {
                         .fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(
+                    AppTextR14(
                         text = "Robusta Bean",
-                        color = ThemedWhite,
-                        style = MaterialTheme.typography.labelLarge,
                     )
-                    Text(
-                        text = "Medium Roasted",
-                        color = ThemedWhite,
-                        style = MaterialTheme.typography.labelSmall,
+                    AppTextR10(
+                        text = "With Steamed Milk",
                     )
-                }
-                Row {
-                    buildAnnotatedString {
-                        append("4.5")
-                        withStyle(
-                            MaterialTheme.typography.labelSmall.copy(color = ThemedWhite)
-                                .toSpanStyle()
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        PriceComposable(
+                            price = "4.99",
+                        )
+                        OutlinedIconButton(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier
+                                .size(28.dp),
+                            colors = IconButtonDefaults.iconButtonColors(
+                                containerColor = AppColors.SecondaryThemedColor,
+                            ),
+                            shape = RoundedCornerShape(8.dp),
                         ) {
-                            append(" (200)")
+                            Icon(
+                                modifier = Modifier.padding(
+                                    7.dp
+                                ),
+                                imageVector = Icons.Default.Add,
+                                tint = AppColors.ThemedWhite,
+                                contentDescription = stringResource(R.string.add_item_icon),
+                            )
                         }
-                        pop()
                     }
                 }
+            }
+            Row(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .clip(
+                        RoundedCornerShape(
+                            bottomStart = 26.dp,
+                            topEnd = 16.dp,
+                        )
+                    )
+                    .background(
+                        color = AppColors.ThemedBlack.copy(alpha = 0.6f),
+                    )
+                    .padding(
+                        start = 12.dp,
+                        end = 12.dp,
+                        top = 3.dp,
+                        bottom = 5.dp,
+                    ),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(10.dp),
+                    painter = painterResource(id = R.drawable.star_icon),
+                    tint = AppColors.SecondaryThemedColor,
+                    contentDescription = stringResource(
+                        R.string.item_rating
+                    )
+                )
+                AppTextS10(
+                    text = "4.5",
+                    modifier = Modifier.padding(
+                        start = 4.dp,
+                    ),
+                )
             }
         }
     }

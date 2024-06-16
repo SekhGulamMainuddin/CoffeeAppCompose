@@ -6,4 +6,12 @@
     <string name="find_your_coffee">Find Your Coffee...</string>
     <string name="close_icon">Close icon</string>
     <string name="coffee_image">Coffee Image</string>
+    <string name="add_item_icon">Add Item Icon</string>
+    <string name="item_rating">Item Rating</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="cart_screen">Cart Screen</string>
+    <string name="favourites_screen">Favourites Screen</string>
+    <string name="order_history_screen">Order History Screen</string>
+    <string name="back_icon">Back Button</string>
+    <string name="favourites_icon">Add or Remove from Favourites</string>
 </resources>
