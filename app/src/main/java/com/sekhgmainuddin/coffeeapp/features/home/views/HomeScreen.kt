@@ -1,19 +1,14 @@
-package com.sekhgmainuddin.coffeeapp.features.home.screens
+package com.sekhgmainuddin.coffeeapp.features.home.views
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -28,8 +23,6 @@ import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -51,13 +44,13 @@ import androidx.compose.ui.unit.dp
 import com.sekhgmainuddin.coffeeapp.R
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS14
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS16
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextS28
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
-import com.sekhgmainuddin.coffeeapp.features.home.composables.CoffeeItem
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen() {
     val homeScreenScrollState = rememberScrollState()
     val query = remember { mutableStateOf("aaa") }
     val scrollScope = rememberScrollState()
@@ -65,18 +58,19 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     var tabIndex by remember { mutableIntStateOf(0) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    return Column(modifier = modifier.verticalScroll(homeScreenScrollState)) {
-        Text(
+    return Column(modifier = Modifier.verticalScroll(homeScreenScrollState)) {
+        AppTextS28(
             text = "Find the best coffee for you",
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth(0.8f)
-                .padding(horizontal = 30.dp, vertical = 15.dp),
+                .padding(horizontal = 25.dp)
+                .padding(top = 15.dp, bottom = 25.dp),
         )
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(45.dp)
-                .padding(horizontal = 30.dp)
+                .padding(horizontal = 25.dp)
                 .clip(RoundedCornerShape(10.dp)),
             colors = SearchBarDefaults.colors(
                 containerColor = AppColors.ThemedMidBlack,
@@ -136,7 +130,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         }
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 10.dp),
             containerColor = Color.Transparent,
@@ -180,7 +174,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         }
         AppTextS16(
             text = "Coffee beans",
-            modifier = modifier.padding(start = 30.dp, top = 10.dp, bottom = 20.dp),
+            modifier = Modifier.padding(start = 30.dp, top = 10.dp, bottom = 20.dp),
         )
         LazyRow(
             contentPadding = PaddingValues(start = 30.dp, end = 30.dp),

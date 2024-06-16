@@ -1,4 +1,4 @@
-package com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.screens
+package com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,14 +17,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,7 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.Placeholder
@@ -43,18 +38,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sekhgmainuddin.coffeeapp.R
-import com.sekhgmainuddin.coffeeapp.core.common.AppTextM10
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextM12
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextR12
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS14
-import com.sekhgmainuddin.coffeeapp.core.common.AppTextS16
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS20
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextStyles
 import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
+import com.sekhgmainuddin.coffeeapp.core.common.composables.CustomTopAppBar
+import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceAndPayComposable
 import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceComposable
+import com.sekhgmainuddin.coffeeapp.core.common.composables.PrimaryButton
+import com.sekhgmainuddin.coffeeapp.core.common.composables.SecondaryButton
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
-import com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.composables.CoffeeBeanCharacteristics
-import com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.composables.SizeSelectButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
@@ -98,18 +93,7 @@ fun CoffeeOrBeanDetailsScreen(modifier: Modifier = Modifier) {
     Scaffold(
         containerColor = AppColors.ThemedBlack,
         topBar = {
-            TopAppBar(
-                modifier = modifier.padding(end = 10.dp),
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent,
-                ),
-                title = {
-                    AppIconButton(
-                        iconId = R.drawable.back_icon,
-                        contentDescriptionId = R.string.back_icon,
-                        onClick = { /* TODO: Navigate back */ },
-                    )
-                },
+            CustomTopAppBar(
                 actions = {
                     AppIconButton(
                         iconId = R.drawable.favourites_icon,
@@ -117,43 +101,15 @@ fun CoffeeOrBeanDetailsScreen(modifier: Modifier = Modifier) {
                         contentDescriptionId = R.string.favourites_icon,
                         onClick = { /* TODO: Open menu */ },
                     )
-                }
+                },
             )
         },
         bottomBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = 20.dp,
-                        vertical = 25.dp
-                    ),
-                horizontalArrangement = Arrangement.spacedBy(50.dp)
+            PriceAndPayComposable(
+                totalAmount = "10.50",
+                payButtonText = "Add to Cart"
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    AppTextM12(
-                        text = "Price",
-                        color = AppColors.ThemedLightGrey
-                    )
-                    PriceComposable(
-                        price = "10.50",
-                        textStyle = AppTextStyles.S20,
-                    )
-                }
-                ElevatedButton(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier.weight(1f).height(60.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = ButtonDefaults.elevatedButtonColors(
-                        containerColor = AppColors.SecondaryThemedColor,
-                    ),
-                ) {
-                    AppTextS16(
-                        text = "Add to Cart"
-                    )
-                }
+
             }
         }
     ) {
@@ -221,18 +177,12 @@ fun CoffeeOrBeanDetailsScreen(modifier: Modifier = Modifier) {
                             inlineContent = inlineContentMap,
                             style = AppTextStyles.S16,
                         )
-                        ElevatedButton(
-                            onClick = { /*TODO*/ },
-                            shape = RoundedCornerShape(10.dp),
-                            colors = ButtonDefaults.elevatedButtonColors(
-                                containerColor = AppColors.ThemedMidBlack,
-                            ),
-                        ) {
-                            AppTextM10(
-                                text = "Medium Roasted",
-                                color = AppColors.ThemedLightGrey,
-                            )
-                        }
+                        SecondaryButton(
+                            text = "Medium Roasted",
+                            onClick = {
+                                /*TODO*/
+                            }
+                        )
                     }
                 }
             }

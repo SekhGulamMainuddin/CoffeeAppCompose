@@ -1,4 +1,4 @@
-package com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.composables
+package com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.views
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

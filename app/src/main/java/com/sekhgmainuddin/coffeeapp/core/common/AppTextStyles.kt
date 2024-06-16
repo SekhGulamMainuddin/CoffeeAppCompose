@@ -174,6 +174,12 @@ object AppTextStyles {
         fontSize = 26.sp,
         color = AppColors.ThemedWhite,
     )
+    val S28 = TextStyle(
+        fontFamily = Poppins,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 28.sp,
+        color = AppColors.ThemedWhite,
+    )
 
     // Light weight styles
     val L10 = TextStyle(

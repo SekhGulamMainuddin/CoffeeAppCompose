@@ -4,6 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
@@ -14,8 +15,9 @@ fun AppTextR10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -24,8 +26,9 @@ fun AppTextR12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -34,8 +37,9 @@ fun AppTextR14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -44,8 +48,9 @@ fun AppTextR16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -54,8 +59,9 @@ fun AppTextR18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -64,8 +70,9 @@ fun AppTextR20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -74,8 +81,9 @@ fun AppTextR22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -84,8 +92,9 @@ fun AppTextR24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -94,8 +103,9 @@ fun AppTextR26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.R26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.R26.copy(color = color, textAlign = textAlign))
 }
 
 // Regular weight functions
@@ -105,8 +115,9 @@ fun AppTextM10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -115,8 +126,9 @@ fun AppTextM12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -125,8 +137,9 @@ fun AppTextM14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -135,8 +148,9 @@ fun AppTextM16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -145,8 +159,9 @@ fun AppTextM18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -155,8 +170,9 @@ fun AppTextM20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -165,8 +181,9 @@ fun AppTextM22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -175,8 +192,9 @@ fun AppTextM24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -185,8 +203,9 @@ fun AppTextM26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.M26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.M26.copy(color = color, textAlign = textAlign))
 }
 
 // SemiBold weight functions
@@ -196,8 +215,9 @@ fun AppTextS10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -206,8 +226,9 @@ fun AppTextS12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -216,8 +237,9 @@ fun AppTextS14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -226,8 +248,9 @@ fun AppTextS16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -236,8 +259,9 @@ fun AppTextS18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -246,8 +270,9 @@ fun AppTextS20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -256,8 +281,9 @@ fun AppTextS22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -266,8 +292,9 @@ fun AppTextS24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -276,8 +303,20 @@ fun AppTextS26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.S26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.S26.copy(color = color, textAlign = textAlign))
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF000000)
+@Composable
+fun AppTextS28(
+    modifier: Modifier = Modifier,
+    text: String = "App Text",
+    color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
+) {
+    Text(modifier = modifier, text = text, style = AppTextStyles.S28.copy(color = color, textAlign = textAlign))
 }
 
 // Light weight functions
@@ -287,8 +326,9 @@ fun AppTextL10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -297,8 +337,9 @@ fun AppTextL12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -307,8 +348,9 @@ fun AppTextL14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -317,8 +359,9 @@ fun AppTextL16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -327,8 +370,9 @@ fun AppTextL18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -337,8 +381,9 @@ fun AppTextL20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -347,8 +392,9 @@ fun AppTextL22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -357,8 +403,9 @@ fun AppTextL24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -367,8 +414,9 @@ fun AppTextL26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.L26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.L26.copy(color = color, textAlign = textAlign))
 }
 
 // ExtraLight weight functions
@@ -378,8 +426,9 @@ fun AppTextEL10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -388,8 +437,9 @@ fun AppTextEL12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -398,8 +448,9 @@ fun AppTextEL14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -408,8 +459,9 @@ fun AppTextEL16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -418,8 +470,9 @@ fun AppTextEL18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -428,8 +481,9 @@ fun AppTextEL20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -438,8 +492,9 @@ fun AppTextEL22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -448,8 +503,9 @@ fun AppTextEL24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -458,8 +514,9 @@ fun AppTextEL26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EL26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EL26.copy(color = color, textAlign = textAlign))
 }
 
 // Bold weight functions
@@ -469,8 +526,9 @@ fun AppTextB10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -479,8 +537,9 @@ fun AppTextB12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -489,8 +548,9 @@ fun AppTextB14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -499,8 +559,9 @@ fun AppTextB16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -509,8 +570,9 @@ fun AppTextB18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -519,8 +581,9 @@ fun AppTextB20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -529,8 +592,9 @@ fun AppTextB22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -539,8 +603,9 @@ fun AppTextB24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -549,8 +614,9 @@ fun AppTextB26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.B26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.B26.copy(color = color, textAlign = textAlign))
 }
 
 // ExtraBold weight functions
@@ -560,8 +626,9 @@ fun AppTextEB10(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB10.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB10.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -570,8 +637,9 @@ fun AppTextEB12(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB12.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB12.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -580,8 +648,9 @@ fun AppTextEB14(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB14.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB14.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -590,8 +659,9 @@ fun AppTextEB16(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB16.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB16.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -600,8 +670,9 @@ fun AppTextEB18(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB18.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB18.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -610,8 +681,9 @@ fun AppTextEB20(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB20.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB20.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -620,8 +692,9 @@ fun AppTextEB22(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB22.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB22.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -630,8 +703,9 @@ fun AppTextEB24(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB24.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB24.copy(color = color, textAlign = textAlign))
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF000000)
@@ -640,6 +714,7 @@ fun AppTextEB26(
     modifier: Modifier = Modifier,
     text: String = "App Text",
     color: Color = AppColors.ThemedWhite,
+    textAlign: TextAlign= TextAlign.Start
 ) {
-    Text(modifier = modifier, text = text, style = AppTextStyles.EB26.copy(color = color))
+    Text(modifier = modifier, text = text, style = AppTextStyles.EB26.copy(color = color, textAlign = textAlign))
 }
