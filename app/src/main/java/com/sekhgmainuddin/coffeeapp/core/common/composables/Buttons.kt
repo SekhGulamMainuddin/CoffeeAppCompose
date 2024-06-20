@@ -35,13 +35,14 @@ fun AppIconButton(
     contentDescriptionId: Int = R.string.menu_icon,
 ) {
     IconButton(
+        modifier = modifier,
         onClick = onClick,
     ) {
         Icon(
             tint = tint,
             painter = painterResource(id = iconId),
             contentDescription = stringResource(contentDescriptionId),
-            modifier = modifier
+            modifier = Modifier
                 .size(35.dp)
                 .background(
                     brush = Brush.linearGradient(
@@ -95,12 +96,14 @@ fun PrimaryButton(
 fun SecondaryButton(
     modifier: Modifier = Modifier,
     text: String = "Secondary Button",
+    isEnabled: Boolean = true,
     onClick: () -> Unit = {},
 ) {
     ElevatedButton(
         modifier = modifier,
         onClick = onClick,
         shape = RoundedCornerShape(10.dp),
+        enabled = isEnabled,
         colors = ButtonDefaults.elevatedButtonColors(
             containerColor = AppColors.ThemedMidBlack,
         ),

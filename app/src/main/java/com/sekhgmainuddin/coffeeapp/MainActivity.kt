@@ -34,6 +34,7 @@ import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
 import com.sekhgmainuddin.coffeeapp.core.common.composables.CustomTopAppBar
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
+import com.sekhgmainuddin.coffeeapp.features.favourites.views.FavouritesScreen
 import com.sekhgmainuddin.coffeeapp.features.home.views.HomeScreen
 
 class MainActivity : ComponentActivity() {
@@ -46,7 +47,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
 fun MainComposable(modifier: Modifier = Modifier) {
@@ -133,7 +133,7 @@ fun MainComposable(modifier: Modifier = Modifier) {
             }
         ) { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                HomeScreen()
+                FavouritesScreen()
             }
         }
     }
