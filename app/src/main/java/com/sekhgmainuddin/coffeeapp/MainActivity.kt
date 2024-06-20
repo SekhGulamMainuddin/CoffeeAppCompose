@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -34,8 +33,7 @@ import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
 import com.sekhgmainuddin.coffeeapp.core.common.composables.CustomTopAppBar
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
-import com.sekhgmainuddin.coffeeapp.features.favourites.views.FavouritesScreen
-import com.sekhgmainuddin.coffeeapp.features.home.views.HomeScreen
+import com.sekhgmainuddin.coffeeapp.features.orderHistory.views.OrderHistoryScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,7 +131,7 @@ fun MainComposable(modifier: Modifier = Modifier) {
             }
         ) { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                FavouritesScreen()
+                OrderHistoryScreen()
             }
         }
     }

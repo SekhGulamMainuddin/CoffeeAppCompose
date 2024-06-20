@@ -31,7 +31,8 @@ fun PriceComposable(
     modifier: Modifier = Modifier,
     price: String = "4.99",
     textStyle: TextStyle = AppTextStyles.S16,
-    currencyColor: Color? = null
+    currencyColor: Color? = null,
+    textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
         modifier = modifier,
@@ -45,6 +46,7 @@ fun PriceComposable(
             append(" $price")
         },
         style = textStyle,
+        textAlign = textAlign
     )
 }
 
