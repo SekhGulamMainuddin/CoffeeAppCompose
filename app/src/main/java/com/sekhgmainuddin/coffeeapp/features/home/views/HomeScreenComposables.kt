@@ -40,7 +40,7 @@ import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
 
 @Preview
 @Composable
-fun CoffeeItem(modifier: Modifier = Modifier) {
+fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
     return CoffeeAppTheme {
         Box(
             modifier = modifier
@@ -60,7 +60,9 @@ fun CoffeeItem(modifier: Modifier = Modifier) {
                 .padding(
                     12.dp,
                 )
-                .clickable { },
+                .clickable {
+                    onClick()
+                },
         ) {
             Column {
                 Image(

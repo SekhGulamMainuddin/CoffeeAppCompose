@@ -15,7 +15,7 @@ import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
 @Preview
 @Composable
-fun PaymentScreen() {
+fun PaymentScreen(totalAmount: String = "4.20") {
     val scrollState = rememberScrollState()
     Scaffold(
         containerColor = AppColors.ThemedBlack,
@@ -25,7 +25,10 @@ fun PaymentScreen() {
             )
         },
         bottomBar = {
-            PriceAndPayComposable(totalAmount = "4.20", payButtonText = "Pay from Credit Card") {
+            PriceAndPayComposable(
+                totalAmount = totalAmount,
+                payButtonText = "Pay from Credit Card"
+            ) {
 
             }
         }

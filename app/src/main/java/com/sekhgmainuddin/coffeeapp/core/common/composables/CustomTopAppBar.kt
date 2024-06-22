@@ -23,8 +23,9 @@ fun CustomTopAppBar(
     modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
     showBackButton: Boolean = true,
+    onBackPressed: () -> Unit = {  },
     title: String? = null,
-    navigationItems: @Composable () -> Unit = {}
+    navigationItems: @Composable () -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
         modifier = modifier.padding(horizontal = 10.dp),
@@ -36,7 +37,7 @@ fun CustomTopAppBar(
                 AppIconButton(
                     iconId = R.drawable.back_icon,
                     contentDescriptionId = R.string.back_icon,
-                    onClick = { /* TODO: Navigate back */ },
+                    onClick = onBackPressed,
                 )
             navigationItems()
         },

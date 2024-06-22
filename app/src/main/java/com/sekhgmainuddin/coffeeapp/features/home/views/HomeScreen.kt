@@ -41,18 +41,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.sekhgmainuddin.coffeeapp.R
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextM10
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS14
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS16
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS28
+import com.sekhgmainuddin.coffeeapp.core.routes.Routes
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
-@Preview(showBackground = true, backgroundColor = 0xFF000000)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    bottomNavController: NavController,
+    mainNavController: NavController,
+) {
     val homeScreenScrollState = rememberScrollState()
-    val query = remember { mutableStateOf("aaa") }
+    var query by remember { mutableStateOf("aaa") }
     val scrollScope = rememberScrollState()
     val tabs = listOf("All", "Cappuccino", "Espresso", "Americano", "Macchiato")
     var tabIndex by remember { mutableIntStateOf(0) }
@@ -81,17 +86,14 @@ fun HomeScreen() {
                 )
             ),
             placeholder = {
-                Text(
+                AppTextM10(
                     text = stringResource(R.string.find_your_coffee),
                     color = AppColors.ThemedGrey,
-                    style = MaterialTheme.typography.labelSmall.copy(
-                        color = AppColors.ThemedGrey,
-                    ),
                 )
             },
-            query = query.value,
+            query = query,
             onQueryChange = {
-                query.value = it
+                query = it
             },
             onSearch = {
 
@@ -109,10 +111,10 @@ fun HomeScreen() {
                 )
             },
             trailingIcon = {
-                if (query.value.isNotEmpty()) {
+                if (query.isNotEmpty()) {
                     IconButton(
                         onClick = {
-                            query.value = ""
+                            query = ""
                             keyboardController?.hide()
                         },
                         modifier = Modifier.size(20.dp),
@@ -127,6 +129,9 @@ fun HomeScreen() {
                 }
             }
         ) {
+            AppTextM10(
+                text = query,
+            )
         }
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
@@ -180,7 +185,12 @@ fun HomeScreen() {
             contentPadding = PaddingValues(start = 30.dp, end = 30.dp),
         ) {
             items(10) {
-                CoffeeItem(modifier = Modifier.padding(end = 20.dp))
+                CoffeeItem(
+                    modifier = Modifier.padding(end = 20.dp),
+                    onClick = {
+                        mainNavController.navigate(Routes.CoffeeOrBeanDetailScreen.route + "123456")
+                    },
+                )
             }
         }
     }

@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.sekhgmainuddin.coffeeapp.R
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextR12
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS14
@@ -26,9 +27,8 @@ import com.sekhgmainuddin.coffeeapp.core.common.composables.CustomTopAppBar
 import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceAndPayComposable
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
-@Preview
 @Composable
-fun CoffeeOrBeanDetailsScreen(modifier: Modifier = Modifier) {
+fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: String = "") {
 
     var isSmallSelected by remember {
         mutableStateOf(false)
@@ -52,6 +52,9 @@ fun CoffeeOrBeanDetailsScreen(modifier: Modifier = Modifier) {
                         onClick = { /* TODO: Open menu */ },
                     )
                 },
+                onBackPressed = {
+                    mainNavController.popBackStack()
+                }
             )
         },
         bottomBar = {
@@ -65,13 +68,13 @@ fun CoffeeOrBeanDetailsScreen(modifier: Modifier = Modifier) {
     ) {
         it
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
         ) {
             CoffeeOrBeanDetailComposable()
             Column(
-                modifier = modifier.padding(
+                modifier = Modifier.padding(
                     20.dp,
                 ),
             ) {

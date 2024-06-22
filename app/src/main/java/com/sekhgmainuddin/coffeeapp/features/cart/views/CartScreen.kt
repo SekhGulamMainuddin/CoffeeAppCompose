@@ -14,7 +14,7 @@ import kotlin.random.Random
 
 @Preview
 @Composable
-fun CardScreen(modifier: Modifier = Modifier) {
+fun CartScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
