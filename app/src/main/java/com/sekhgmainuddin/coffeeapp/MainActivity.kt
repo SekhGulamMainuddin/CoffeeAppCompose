@@ -74,7 +74,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             CoffeeOrBeanDetailsScreen(
                                 mainNavController,
-                                it.arguments?.getString("productId")!!
+                                it.arguments?.getString("productId") ?:""
                             )
                         }
                         composable(
