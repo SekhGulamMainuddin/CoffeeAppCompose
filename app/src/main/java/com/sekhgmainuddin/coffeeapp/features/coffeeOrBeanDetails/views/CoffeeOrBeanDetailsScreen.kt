@@ -1,5 +1,6 @@
 package com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.views
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -25,19 +27,87 @@ import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
 import com.sekhgmainuddin.coffeeapp.core.common.composables.CoffeeOrBeanDetailComposable
 import com.sekhgmainuddin.coffeeapp.core.common.composables.CustomTopAppBar
 import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceAndPayComposable
+import com.sekhgmainuddin.coffeeapp.core.helpers.format
+import com.sekhgmainuddin.coffeeapp.core.tempData.CartItemData
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemData
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemType
+import com.sekhgmainuddin.coffeeapp.core.tempData.Price
+import com.sekhgmainuddin.coffeeapp.core.tempData.QuantityType
+import com.sekhgmainuddin.coffeeapp.core.tempData.TempData
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
+import java.util.UUID
 
 @Composable
-fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: String = "") {
+fun CoffeeOrBeanDetailsScreen(
+    mainNavController: NavController,
+    productId: String,
+    itemType: ItemType
+) {
+
+    val context = LocalContext.current
 
     var isSmallSelected by remember {
-        mutableStateOf(false)
+        mutableStateOf(true)
     }
     var isMediumSelected by remember {
         mutableStateOf(false)
     }
     var isLargeSelected by remember {
         mutableStateOf(false)
+    }
+
+    lateinit var data: ItemData
+    lateinit var quantityTypes: List<QuantityType>
+
+    if (itemType == ItemType.COFFEE) {
+        data = TempData.coffeeList.find {
+            it.id == productId
+        }!!
+        quantityTypes = listOf(QuantityType.S, QuantityType.M, QuantityType.L)
+    } else {
+        data = TempData.beanList.find {
+            it.id == productId
+        }!!
+        quantityTypes = listOf(QuantityType.GM250, QuantityType.GM500, QuantityType.GM1000)
+    }
+
+    var isFavourite by remember {
+        mutableStateOf(TempData.favoriteList.find {
+            it.id == productId
+        } != null)
+    }
+
+    val price = mutableListOf<Price>()
+    var totalAmount = 0.0
+    if (isSmallSelected) {
+        totalAmount += data.price[0]
+        price.add(
+            Price(
+                if (itemType == ItemType.COFFEE) QuantityType.S else QuantityType.GM250,
+                1,
+                data.price[0]
+            )
+        )
+    }
+    if (isMediumSelected) {
+        totalAmount += data.price[1]
+        price.add(
+            Price(
+                if (itemType == ItemType.COFFEE) QuantityType.M else QuantityType.GM500,
+                1,
+                data.price[1]
+            )
+        )
+    }
+    if (isLargeSelected) {
+        totalAmount += data.price[2]
+        price.add(
+            Price(
+                if (itemType == ItemType.COFFEE) QuantityType.L else QuantityType.GM1000,
+                1,
+                data.price[2]
+            )
+        )
     }
 
     Scaffold(
@@ -47,9 +117,20 @@ fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: Strin
                 actions = {
                     AppIconButton(
                         iconId = R.drawable.favourites_icon,
-                        tint = AppColors.PrimaryThemedColor,
+                        tint = if (isFavourite) AppColors.PrimaryThemedColor else AppColors.ThemedWhite,
                         contentDescriptionId = R.string.favourites_icon,
-                        onClick = { /* TODO: Open menu */ },
+                        onClick = {
+                            if(isFavourite) {
+                                TempData.favoriteList.removeIf {
+                                    it.id == productId
+                                }
+                            } else {
+                                TempData.favoriteList.add(0, data)
+                            }
+                            Toast.makeText(context, if(isFavourite) "Item Removed from Favourites" else "Item Added to Favourites", Toast.LENGTH_SHORT)
+                                .show()
+                            isFavourite = !isFavourite
+                        },
                     )
                 },
                 onBackPressed = {
@@ -59,10 +140,18 @@ fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: Strin
         },
         bottomBar = {
             PriceAndPayComposable(
-                totalAmount = "10.50",
+                modifier = Modifier.padding(20.dp),
+                totalAmount = totalAmount.format(2),
                 payButtonText = "Add to Cart"
             ) {
-
+                Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show()
+                TempData.cartList.add(
+                    CartItemData(
+                        UUID.randomUUID().toString(),
+                        data,
+                        price
+                    )
+                )
             }
         }
     ) {
@@ -72,7 +161,7 @@ fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: Strin
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
         ) {
-            CoffeeOrBeanDetailComposable()
+            CoffeeOrBeanDetailComposable(data = data)
             Column(
                 modifier = Modifier.padding(
                     20.dp,
@@ -84,7 +173,7 @@ fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: Strin
                 )
                 AppTextR12(
                     modifier = Modifier.padding(vertical = 15.dp),
-                    text = "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed!",
+                    text = data.desc,
                 )
                 AppTextS14(
                     text = "Size",
@@ -96,19 +185,25 @@ fun CoffeeOrBeanDetailsScreen(mainNavController: NavController ,productId: Strin
                 ) {
                     SizeSelectButton(
                         modifier = Modifier.weight(1f),
-                        text = "250gm",
+                        text = quantityTypes[0].displayName,
                         isSelected = isSmallSelected
-                    )
+                    ) {
+                        isSmallSelected = !isSmallSelected
+                    }
                     SizeSelectButton(
                         modifier = Modifier.weight(1f),
-                        text = "500gm",
+                        text = quantityTypes[1].displayName,
                         isSelected = isMediumSelected
-                    )
+                    ) {
+                        isMediumSelected = !isMediumSelected
+                    }
                     SizeSelectButton(
                         modifier = Modifier.weight(1f),
-                        text = "1000gm",
+                        text = quantityTypes[2].displayName,
                         isSelected = isLargeSelected
-                    )
+                    ) {
+                        isLargeSelected = !isLargeSelected
+                    }
                 }
             }
         }

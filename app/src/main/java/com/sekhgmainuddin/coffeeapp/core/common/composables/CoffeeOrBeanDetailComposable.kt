@@ -38,21 +38,21 @@ import com.sekhgmainuddin.coffeeapp.core.common.AppTextM10
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextR12
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS20
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextStyles
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemData
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.features.coffeeOrBeanDetails.views.CoffeeBeanCharacteristics
 
-@Preview
 @Composable
-fun CoffeeOrBeanDetailComposable(modifier: Modifier = Modifier) {
+fun CoffeeOrBeanDetailComposable(modifier: Modifier = Modifier, data: ItemData) {
     val annotatedString = buildAnnotatedString {
         appendInlineContent(id = "startIcon")
-        append("  4.5  ")
+        append("  ${data.ratings}  ")
         withStyle(
             AppTextStyles.R10.copy(
                 color = AppColors.ThemedLightGrey,
             ).toSpanStyle(),
         ) {
-            append("(6,879)")
+            append("(${"%,d".format(data.numberOrUsersRate)})")
         }
     }
     val inlineContentMap = mapOf(
@@ -73,7 +73,7 @@ fun CoffeeOrBeanDetailComposable(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(500.dp),
-            painter = painterResource(id = R.drawable.cappuchino),
+            painter = painterResource(id = data.image),
             contentDescription = "",
             contentScale = ContentScale.Crop,
         )
@@ -93,22 +93,22 @@ fun CoffeeOrBeanDetailComposable(modifier: Modifier = Modifier) {
             Row {
                 Column {
                     AppTextS20(
-                        text = "Robusta Beans",
+                        text = data.name,
                     )
                     AppTextR12(
-                        text = "From Africa",
+                        text = data.shortDesc,
                         color = AppColors.ThemedLightGrey,
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 CoffeeBeanCharacteristics(
                     modifier = Modifier.padding(end = 15.dp),
-                    iconId = R.drawable.bean,
-                    text = "Bean"
+                    iconId = data.descTab[0].first,
+                    text = data.descTab[0].second
                 )
                 CoffeeBeanCharacteristics(
-                    iconId = R.drawable.location_icon,
-                    text = "Africa"
+                    iconId = data.descTab[1].first,
+                    text = data.descTab[1].second
                 )
             }
             Row(
@@ -126,7 +126,6 @@ fun CoffeeOrBeanDetailComposable(modifier: Modifier = Modifier) {
                     inlineContent = inlineContentMap,
                     style = AppTextStyles.S16,
                 )
-
             }
         }
     }

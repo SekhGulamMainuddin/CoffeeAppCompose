@@ -1,6 +1,7 @@
 package com.sekhgmainuddin.coffeeapp
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +11,7 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -41,6 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
 import com.sekhgmainuddin.coffeeapp.core.common.composables.CustomTopAppBar
 import com.sekhgmainuddin.coffeeapp.core.routes.Routes
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemType
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
 import com.sekhgmainuddin.coffeeapp.features.cart.views.CartScreen
@@ -72,9 +75,16 @@ class MainActivity : ComponentActivity() {
                             Routes.CoffeeOrBeanDetailScreen.route,
                             arguments = Routes.CoffeeOrBeanDetailScreen.arguments,
                         ) {
+                            Log.d(
+                                "SEKH BRO", it.arguments?.getString("itemType").toString()
+                            )
+                            Log.d(
+                                "SEKH BRO", it.arguments?.getString("productId").toString()
+                            )
                             CoffeeOrBeanDetailsScreen(
                                 mainNavController,
-                                it.arguments?.getString("productId")!!
+                                it.arguments?.getString("productId")!!,
+                                ItemType.COFFEE
                             )
                         }
                         composable(
@@ -143,6 +153,7 @@ fun MainComposable(mainNavController: NavController) {
         bottomBar = {
             NavigationBar(
                 containerColor = Color.Transparent,
+                modifier = Modifier.height(120.dp)
             ) {
                 val bottomTabs = listOf(
                     Pair(

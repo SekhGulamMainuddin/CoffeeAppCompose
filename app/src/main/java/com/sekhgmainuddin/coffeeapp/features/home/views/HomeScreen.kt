@@ -1,30 +1,26 @@
 package com.sekhgmainuddin.coffeeapp.features.home.views
 
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,7 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sekhgmainuddin.coffeeapp.R
@@ -47,18 +42,19 @@ import com.sekhgmainuddin.coffeeapp.core.common.AppTextM10
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS14
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS16
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS28
+import com.sekhgmainuddin.coffeeapp.core.common.AppTextStyles
 import com.sekhgmainuddin.coffeeapp.core.routes.Routes
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemType
+import com.sekhgmainuddin.coffeeapp.core.tempData.TempData
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     bottomNavController: NavController,
     mainNavController: NavController,
 ) {
     val homeScreenScrollState = rememberScrollState()
-    var query by remember { mutableStateOf("aaa") }
-    val scrollScope = rememberScrollState()
+    var query by remember { mutableStateOf("") }
     val tabs = listOf("All", "Cappuccino", "Espresso", "Americano", "Macchiato")
     var tabIndex by remember { mutableIntStateOf(0) }
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -71,37 +67,14 @@ fun HomeScreen(
                 .padding(horizontal = 25.dp)
                 .padding(top = 15.dp, bottom = 25.dp),
         )
-        SearchBar(
+        TextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(45.dp)
-                .padding(horizontal = 25.dp)
-                .clip(RoundedCornerShape(10.dp)),
-            colors = SearchBarDefaults.colors(
-                containerColor = AppColors.ThemedMidBlack,
-                dividerColor = AppColors.ThemedLightGrey,
-                inputFieldColors = TextFieldDefaults.colors(
-                    focusedTextColor = AppColors.ThemedWhite,
-                    unfocusedTextColor = AppColors.ThemedLightGrey,
-                )
-            ),
-            placeholder = {
-                AppTextM10(
-                    text = stringResource(R.string.find_your_coffee),
-                    color = AppColors.ThemedGrey,
-                )
-            },
-            query = query,
-            onQueryChange = {
-                query = it
-            },
-            onSearch = {
-
-            },
-            active = true,
-            onActiveChange = {
-
-            },
+                .padding(horizontal = 25.dp),
+            value = query,
+            onValueChange = { query = it },
+            singleLine = true,
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.search_icon),
@@ -110,6 +83,8 @@ fun HomeScreen(
                     tint = AppColors.ThemedGrey
                 )
             },
+            textStyle = AppTextStyles.M10,
+            shape = RoundedCornerShape(10.dp),
             trailingIcon = {
                 if (query.isNotEmpty()) {
                     IconButton(
@@ -127,12 +102,22 @@ fun HomeScreen(
                         )
                     }
                 }
-            }
-        ) {
-            AppTextM10(
-                text = query,
-            )
-        }
+            },
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = AppColors.ThemedMidBlack,
+                unfocusedContainerColor = AppColors.ThemedMidBlack,
+                focusedTextColor = AppColors.ThemedWhite,
+                unfocusedTextColor = AppColors.ThemedLightGrey,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+            ),
+            placeholder = {
+                AppTextM10(
+                    text = stringResource(R.string.find_your_coffee),
+                    color = AppColors.ThemedGrey,
+                )
+            },
+        )
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
             modifier = Modifier
@@ -145,12 +130,12 @@ fun HomeScreen(
             },
             indicator = { tabPositions ->
                 Box(modifier = Modifier.tabIndicatorOffset(tabPositions[tabIndex])) {
-                    Divider(
+                    HorizontalDivider(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .size(7.dp)
                             .clip(CircleShape),
-                        color = AppColors.SecondaryThemedColor,
+                        color = AppColors.SecondaryThemedColor
                     )
                 }
             }
@@ -168,13 +153,18 @@ fun HomeScreen(
                 )
             }
         }
-        Row(
-            modifier = Modifier
-                .horizontalScroll(scrollScope)
-                .padding(start = 30.dp, end = 30.dp, top = 10.dp, bottom = 10.dp),
+        LazyRow(
+            contentPadding = PaddingValues(
+                start = 30.dp, end = 30.dp, top = 10.dp, bottom = 10.dp
+            ),
+            horizontalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-            (0..10).forEach { _ ->
-                CoffeeItem(modifier = Modifier.padding(end = 20.dp))
+            itemsIndexed(TempData.coffeeList) { _, item ->
+                CoffeeItem(
+                    onClick = {
+                        mainNavController.navigate("product-details-screen/productId=" + item.id + "&itemType=${ItemType.COFFEE.name}")
+                    },
+                )
             }
         }
         AppTextS16(
@@ -183,12 +173,12 @@ fun HomeScreen(
         )
         LazyRow(
             contentPadding = PaddingValues(start = 30.dp, end = 30.dp),
+            horizontalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-            items(10) {
+            itemsIndexed(TempData.beanList) { _, item ->
                 CoffeeItem(
-                    modifier = Modifier.padding(end = 20.dp),
                     onClick = {
-                        mainNavController.navigate(Routes.CoffeeOrBeanDetailScreen.route + "123456")
+                        mainNavController.navigate("product-details-screen/"+ "productId=" + item.id + "&itemType=${ItemType.COFFEE_BEAN.name}")
                     },
                 )
             }

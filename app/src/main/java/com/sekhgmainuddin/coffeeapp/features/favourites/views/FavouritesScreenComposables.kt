@@ -34,7 +34,7 @@ fun FavouritesItem(modifier: Modifier = Modifier) {
             .clip(RoundedCornerShape(25.dp))
     ) {
         Column {
-            CoffeeOrBeanDetailComposable()
+//            CoffeeOrBeanDetailComposable()
             Text(
                 modifier = Modifier
                     .background(

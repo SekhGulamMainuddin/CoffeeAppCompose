@@ -51,15 +51,15 @@ fun CoffeeBeanCharacteristics(
     }
 }
 
-@Preview
 @Composable
 fun SizeSelectButton(
     modifier: Modifier = Modifier,
     text: String = "250gm",
     isSelected: Boolean = false,
+    onClick: () -> Unit
 ) {
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = AppColors.ThemedMidBlack,

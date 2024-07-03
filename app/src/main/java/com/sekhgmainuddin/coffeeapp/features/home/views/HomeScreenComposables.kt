@@ -99,7 +99,7 @@ fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
                             price = "4.99",
                         )
                         OutlinedIconButton(
-                            onClick = { /*TODO*/ },
+                            onClick = onClick,
                             modifier = Modifier
                                 .size(28.dp),
                             colors = IconButtonDefaults.iconButtonColors(
