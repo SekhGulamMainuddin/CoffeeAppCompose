@@ -74,15 +74,18 @@ fun AppIconButton(
 fun PrimaryButton(
     modifier: Modifier = Modifier,
     text: String = "Primary Button",
+    isEnabled: Boolean = true,
+    buttonColor: Color = AppColors.SecondaryThemedColor,
     onClick: () -> Unit = {},
 ) {
     ElevatedButton(
         onClick = onClick,
         modifier = modifier
             .height(60.dp),
+        enabled = isEnabled,
         shape = RoundedCornerShape(20.dp),
         colors = ButtonDefaults.elevatedButtonColors(
-            containerColor = AppColors.SecondaryThemedColor,
+            containerColor = buttonColor,
         ),
     ) {
         AppTextS16(

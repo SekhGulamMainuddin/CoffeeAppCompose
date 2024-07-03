@@ -120,14 +120,18 @@ fun CoffeeOrBeanDetailsScreen(
                         tint = if (isFavourite) AppColors.PrimaryThemedColor else AppColors.ThemedWhite,
                         contentDescriptionId = R.string.favourites_icon,
                         onClick = {
-                            if(isFavourite) {
+                            if (isFavourite) {
                                 TempData.favoriteList.removeIf {
                                     it.id == productId
                                 }
                             } else {
                                 TempData.favoriteList.add(0, data)
                             }
-                            Toast.makeText(context, if(isFavourite) "Item Removed from Favourites" else "Item Added to Favourites", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                context,
+                                if (isFavourite) "Item Removed from Favourites" else "Item Added to Favourites",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                             isFavourite = !isFavourite
                         },
@@ -142,16 +146,21 @@ fun CoffeeOrBeanDetailsScreen(
             PriceAndPayComposable(
                 modifier = Modifier.padding(20.dp),
                 totalAmount = totalAmount.format(2),
-                payButtonText = "Add to Cart"
+                payButtonText = "Add to Cart",
+                buttonColor = if (isLargeSelected || isMediumSelected || isSmallSelected) AppColors.SecondaryThemedColor else AppColors.ThemedGrey,
             ) {
-                Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show()
-                TempData.cartList.add(
-                    CartItemData(
-                        UUID.randomUUID().toString(),
-                        data,
-                        price
+                if (isLargeSelected || isMediumSelected || isSmallSelected) {
+                    Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show()
+                    TempData.cartList.add(
+                        CartItemData(
+                            UUID.randomUUID().toString(),
+                            data,
+                            price
+                        )
                     )
-                )
+                } else {
+                    Toast.makeText(context, "Please select a size", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     ) {
@@ -159,12 +168,16 @@ fun CoffeeOrBeanDetailsScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(bottom = 60.dp)
                 .verticalScroll(rememberScrollState()),
         ) {
             CoffeeOrBeanDetailComposable(data = data)
             Column(
                 modifier = Modifier.padding(
-                    20.dp,
+                    start = 20.dp,
+                    end = 20.dp,
+                    top = 20.dp,
+                    bottom = 200.dp
                 ),
             ) {
                 AppTextS14(
@@ -172,7 +185,7 @@ fun CoffeeOrBeanDetailsScreen(
                     color = AppColors.ThemedLightGrey
                 )
                 AppTextR12(
-                    modifier = Modifier.padding(vertical = 15.dp),
+                    modifier = Modifier.padding(top = 15.dp, bottom = 20.dp),
                     text = data.desc,
                 )
                 AppTextS14(
@@ -180,7 +193,7 @@ fun CoffeeOrBeanDetailsScreen(
                     color = AppColors.ThemedLightGrey
                 )
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
                     horizontalArrangement = Arrangement.spacedBy(22.dp)
                 ) {
                     SizeSelectButton(

@@ -126,6 +126,7 @@ fun CoffeeOrBeanDetailComposable(modifier: Modifier = Modifier, data: ItemData) 
                     inlineContent = inlineContentMap,
                     style = AppTextStyles.S16,
                 )
+                RoastedType()
             }
         }
     }

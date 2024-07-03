@@ -55,11 +55,13 @@ fun PriceAndPayComposable(
     modifier: Modifier = Modifier,
     totalAmount: String,
     payButtonText: String,
+    buttonColor: Color = AppColors.SecondaryThemedColor,
     onPayClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .background(AppColors.ThemedBlack)
             .padding(
                 horizontal = 20.dp,
                 vertical = 25.dp
@@ -82,7 +84,8 @@ fun PriceAndPayComposable(
         PrimaryButton(
             modifier = Modifier.weight(1f),
             text = payButtonText,
-            onClick = onPayClick
+            onClick = onPayClick,
+            buttonColor = buttonColor
         )
     }
 }
