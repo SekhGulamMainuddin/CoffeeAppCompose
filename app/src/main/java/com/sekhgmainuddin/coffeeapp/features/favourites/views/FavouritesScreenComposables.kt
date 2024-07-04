@@ -24,17 +24,20 @@ import com.sekhgmainuddin.coffeeapp.R
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextStyles
 import com.sekhgmainuddin.coffeeapp.core.common.composables.AppIconButton
 import com.sekhgmainuddin.coffeeapp.core.common.composables.CoffeeOrBeanDetailComposable
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemData
+import com.sekhgmainuddin.coffeeapp.core.tempData.TempData
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
-@Preview
 @Composable
-fun FavouritesItem(modifier: Modifier = Modifier) {
+fun FavouritesItem(modifier: Modifier = Modifier, item: ItemData) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(25.dp))
     ) {
         Column {
-//            CoffeeOrBeanDetailComposable()
+            CoffeeOrBeanDetailComposable(
+                data = item,
+            )
             Text(
                 modifier = Modifier
                     .background(
@@ -59,7 +62,7 @@ fun FavouritesItem(modifier: Modifier = Modifier) {
                     ) {
                         append("Description\n")
                     }
-                    append("Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed!")
+                    append(item.desc)
                 },
                 style = AppTextStyles.R12,
                 maxLines = 4,
@@ -72,7 +75,7 @@ fun FavouritesItem(modifier: Modifier = Modifier) {
                 end = 15.dp
             ).align(Alignment.TopEnd),
             onClick = {
-
+                TempData.favoriteList.remove(item)
             },
             iconId = R.drawable.favourites_icon,
             tint = AppColors.PrimaryThemedColor

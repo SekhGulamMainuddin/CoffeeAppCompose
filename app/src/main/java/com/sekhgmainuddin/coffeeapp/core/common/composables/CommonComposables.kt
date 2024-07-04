@@ -8,9 +8,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -64,7 +68,7 @@ fun PriceAndPayComposable(
             .background(AppColors.ThemedBlack)
             .padding(
                 horizontal = 20.dp,
-                vertical = 25.dp
+                vertical = 20.dp
             ),
         horizontalArrangement = Arrangement.spacedBy(50.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -90,9 +94,8 @@ fun PriceAndPayComposable(
     }
 }
 
-@Preview
 @Composable
-fun RoastedType(modifier: Modifier = Modifier, horizontalPadding: Int = 10) {
+fun RoastedType(modifier: Modifier = Modifier, label: String, horizontalPadding: Int = 10,) {
     Box(
         modifier = modifier
             .clip(
@@ -107,7 +110,7 @@ fun RoastedType(modifier: Modifier = Modifier, horizontalPadding: Int = 10) {
     ) {
         AppTextM10(
             modifier = Modifier.align(Alignment.Center),
-            text = "Medium Roasted",
+            text = label,
             color = AppColors.ThemedLightGrey,
             textAlign = TextAlign.Center,
         )

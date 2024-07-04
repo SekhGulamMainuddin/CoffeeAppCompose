@@ -35,12 +35,16 @@ import com.sekhgmainuddin.coffeeapp.core.common.AppTextR10
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextR14
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextS10
 import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceComposable
+import com.sekhgmainuddin.coffeeapp.core.helpers.format
+import com.sekhgmainuddin.coffeeapp.core.tempData.ItemData
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 import com.sekhgmainuddin.coffeeapp.core.theme.CoffeeAppTheme
 
-@Preview
 @Composable
-fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
+fun CoffeeItem(
+    modifier: Modifier = Modifier, item: ItemData,
+    onClick: () -> Unit
+) {
     return CoffeeAppTheme {
         Box(
             modifier = modifier
@@ -66,7 +70,7 @@ fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
         ) {
             Column {
                 Image(
-                    painter = painterResource(id = R.drawable.cappuchino),
+                    painter = painterResource(id = item.image),
                     contentDescription = stringResource(
                         R.string.coffee_image
                     ),
@@ -85,10 +89,10 @@ fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     AppTextR14(
-                        text = "Robusta Bean",
+                        text = item.name,
                     )
                     AppTextR10(
-                        text = "With Steamed Milk",
+                        text = item.shortDesc,
                     )
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -96,7 +100,7 @@ fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         PriceComposable(
-                            price = "4.99",
+                            price = item.price.first().format(2),
                         )
                         OutlinedIconButton(
                             onClick = onClick,
@@ -148,7 +152,7 @@ fun CoffeeItem(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
                     )
                 )
                 AppTextS10(
-                    text = "4.5",
+                    text = item.ratings.format(1),
                     modifier = Modifier.padding(
                         start = 4.dp,
                     ),

@@ -144,7 +144,7 @@ fun CoffeeOrBeanDetailsScreen(
         },
         bottomBar = {
             PriceAndPayComposable(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(bottom = 40.dp),
                 totalAmount = totalAmount.format(2),
                 payButtonText = "Add to Cart",
                 buttonColor = if (isLargeSelected || isMediumSelected || isSmallSelected) AppColors.SecondaryThemedColor else AppColors.ThemedGrey,
@@ -194,7 +194,7 @@ fun CoffeeOrBeanDetailsScreen(
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
-                    horizontalArrangement = Arrangement.spacedBy(22.dp)
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
                 ) {
                     SizeSelectButton(
                         modifier = Modifier.weight(1f),

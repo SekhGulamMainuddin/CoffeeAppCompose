@@ -84,7 +84,7 @@ fun CartItemViewTypeMultiple(
         ) {
             Image(
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(90.dp)
                     .clip(
                         RoundedCornerShape(16.dp)
                     ),
@@ -105,7 +105,8 @@ fun CartItemViewTypeMultiple(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 RoastedType(
-                    horizontalPadding = 15
+                    horizontalPadding = 15,
+                    label = "Roasted",
                 )
             }
         }
@@ -194,7 +195,7 @@ fun CartItemViewTypeSingle(
         ) {
             Image(
                 modifier = Modifier
-                    .size(126.dp)
+                    .size(110.dp)
                     .clip(
                         RoundedCornerShape(16.dp)
                     ),

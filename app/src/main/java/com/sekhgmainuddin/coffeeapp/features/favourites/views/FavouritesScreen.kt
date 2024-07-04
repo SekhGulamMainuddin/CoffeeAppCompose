@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sekhgmainuddin.coffeeapp.core.tempData.TempData
 
 @Preview
 @Composable
@@ -22,8 +23,10 @@ fun FavouritesScreen(modifier: Modifier = Modifier) {
             20.dp
         )
     ) {
-        items(10) {
-            FavouritesItem()
+        items(TempData.favoriteList.size) {
+            FavouritesItem(
+                item = TempData.favoriteList[it]
+            )
         }
     }
 }

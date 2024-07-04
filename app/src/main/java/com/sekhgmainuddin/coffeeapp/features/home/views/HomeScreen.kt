@@ -161,6 +161,7 @@ fun HomeScreen(
         ) {
             itemsIndexed(TempData.coffeeList) { _, item ->
                 CoffeeItem(
+                    item = item,
                     onClick = {
                         mainNavController.navigate("product-details-screen/productId=" + item.id + "&itemType=${ItemType.COFFEE.name}")
                     },
@@ -177,6 +178,7 @@ fun HomeScreen(
         ) {
             itemsIndexed(TempData.beanList) { _, item ->
                 CoffeeItem(
+                    item = item,
                     onClick = {
                         mainNavController.navigate("product-details-screen/"+ "productId=" + item.id + "&itemType=${ItemType.COFFEE_BEAN.name}")
                     },

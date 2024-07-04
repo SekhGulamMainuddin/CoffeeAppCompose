@@ -1,6 +1,7 @@
 package com.sekhgmainuddin.coffeeapp.core.tempData
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.mutableStateListOf
 import com.sekhgmainuddin.coffeeapp.R
 import java.util.UUID
 
@@ -235,7 +236,7 @@ object TempData {
             ),
         ),
     )
-    val favoriteList = mutableListOf(
+    val favoriteList = mutableStateListOf(
         coffeeList[0],
         beanList[0],
         coffeeList[1],

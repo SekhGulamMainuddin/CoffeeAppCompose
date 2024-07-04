@@ -75,16 +75,10 @@ class MainActivity : ComponentActivity() {
                             Routes.CoffeeOrBeanDetailScreen.route,
                             arguments = Routes.CoffeeOrBeanDetailScreen.arguments,
                         ) {
-                            Log.d(
-                                "SEKH BRO", it.arguments?.getString("itemType").toString()
-                            )
-                            Log.d(
-                                "SEKH BRO", it.arguments?.getString("productId").toString()
-                            )
                             CoffeeOrBeanDetailsScreen(
                                 mainNavController,
                                 it.arguments?.getString("productId")!!,
-                                ItemType.COFFEE
+                                ItemType.valueOf(it.arguments?.getString("itemType")!!)
                             )
                         }
                         composable(
