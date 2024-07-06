@@ -20,10 +20,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,23 +38,21 @@ import com.sekhgmainuddin.coffeeapp.core.common.AppTextS16
 import com.sekhgmainuddin.coffeeapp.core.common.AppTextStyles
 import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceComposable
 import com.sekhgmainuddin.coffeeapp.core.common.composables.RoastedType
+import com.sekhgmainuddin.coffeeapp.core.helpers.format
+import com.sekhgmainuddin.coffeeapp.core.tempData.CartItemData
+import com.sekhgmainuddin.coffeeapp.core.tempData.QuantityTypeCategory
+import com.sekhgmainuddin.coffeeapp.core.tempData.TempData
 import com.sekhgmainuddin.coffeeapp.core.theme.AppColors
 
-enum class QuantityType {
-    SIZE,
-    WEIGHT
-}
-
-@Preview
 @Composable
 fun CartItemViewTypeMultiple(
     modifier: Modifier = Modifier,
-    quantityType: QuantityType = QuantityType.SIZE,
-    sizesOrWeights : List<String> = listOf("S", "M"),
+    cartItemData: CartItemData,
+    index: Int,
 ) {
-    var count by remember {
-        mutableIntStateOf(1)
-    }
+    val quantityType = cartItemData.price[0].quantityType.category
+    val price = cartItemData.price
+
     Column(
         modifier = modifier
             .background(
@@ -110,21 +104,30 @@ fun CartItemViewTypeMultiple(
                 )
             }
         }
-        sizesOrWeights.forEach { sizeOrWeight ->
+        price.forEachIndexed { index, it ->
             Row(
                 modifier = Modifier
-                    .padding(top = 8.dp).fillMaxWidth(),
+                    .padding(top = 8.dp)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 QuantityTypeComposable(
                     quantityType = quantityType,
-                    sizeOrWeight = sizeOrWeight
+                    sizeOrWeight = it.quantityType.displayName
                 )
                 PriceComposable(
-                    price = "5.00"
+                    price = (it.price * it.quantity).format(2)
                 )
-                AddOrRemoveItem()
+                AddOrRemoveItem(
+                    count = it.quantity,
+                    onAdd = {
+
+                    },
+                    onRemove = {
+
+                    }
+                )
             }
         }
     }
@@ -134,7 +137,7 @@ fun CartItemViewTypeMultiple(
 @Composable
 fun QuantityTypeComposable(
     modifier: Modifier = Modifier,
-    quantityType: QuantityType = QuantityType.WEIGHT,
+    quantityType: QuantityTypeCategory = QuantityTypeCategory.WEIGHT,
     sizeOrWeight: String = ""
 ) {
     Box(
@@ -149,7 +152,7 @@ fun QuantityTypeComposable(
             ),
         contentAlignment = Alignment.Center
     ) {
-        if (quantityType == QuantityType.SIZE)
+        if (quantityType == QuantityTypeCategory.SIZE)
             AppTextM16(
                 text = sizeOrWeight,
             )
@@ -160,16 +163,17 @@ fun QuantityTypeComposable(
     }
 }
 
-@Preview
 @Composable
 fun CartItemViewTypeSingle(
     modifier: Modifier = Modifier,
-    quantityType: QuantityType = QuantityType.WEIGHT,
-    sizeOrWeight: String = "250gm"
+    cartItemData: CartItemData,
+    index: Int,
 ) {
-    var count by remember {
-        mutableIntStateOf(1)
-    }
+    val quantityType = cartItemData.price[0].quantityType.category
+    val sizeOrWeight = cartItemData.price[0].quantityType.displayName
+    val quantity = cartItemData.price[0].quantity
+    val price = cartItemData.price[0].price
+
     Column(
         modifier = modifier
             .background(
@@ -189,7 +193,6 @@ fun CartItemViewTypeSingle(
     ) {
         Row(
             modifier = Modifier
-                .padding(bottom = 8.dp)
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min)
         ) {
@@ -225,16 +228,44 @@ fun CartItemViewTypeSingle(
                         quantityType = quantityType
                     )
                     PriceComposable(
-                        price = "5.00",
+                        price = (price * quantity).format(2),
                         textStyle = AppTextStyles.S20
                     )
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 5.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    AddOrRemoveItem()
+                    AddOrRemoveItem(
+                        count = quantity,
+                        onAdd = {
+                            TempData.cartList[index] = cartItemData.copy(
+                                price = cartItemData.price.map {
+                                    it.copy(
+                                        quantity = it.quantity + 1
+                                    )
+                                }
+                            )
+                        },
+                        onRemove = {
+                            if (quantity > 1) {
+                                TempData.cartList[index] = cartItemData.copy(
+                                    price = cartItemData.price.map {
+                                        it.copy(
+                                            quantity = it.quantity - 1
+                                        )
+                                    }
+                                )
+                            } else {
+                                TempData.cartList.removeIf {
+                                    it.id == cartItemData.id
+                                }
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -281,7 +312,7 @@ fun AddOrRemoveButton(
     onClick: () -> Unit = {}
 ) {
     ElevatedButton(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         contentPadding = PaddingValues(0.dp),
         modifier = Modifier.size(30.dp),
         shape = RoundedCornerShape(8.dp),

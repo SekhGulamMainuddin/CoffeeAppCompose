@@ -68,7 +68,7 @@ fun PriceAndPayComposable(
             .background(AppColors.ThemedBlack)
             .padding(
                 horizontal = 20.dp,
-                vertical = 20.dp
+                vertical = 15.dp
             ),
         horizontalArrangement = Arrangement.spacedBy(50.dp),
         verticalAlignment = Alignment.CenterVertically

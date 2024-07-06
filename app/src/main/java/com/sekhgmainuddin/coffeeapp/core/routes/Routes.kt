@@ -19,7 +19,7 @@ sealed class Routes(val route: String, val arguments: List<NamedNavArgument> = e
         )
 
     data object PaymentScreen : Routes(
-        "payment-screen/{totalAmount}",
+        "payment-screen/totalAmount={totalAmount}",
         arguments = listOf(
             navArgument("totalAmount") { type = NavType.StringType }
         ),

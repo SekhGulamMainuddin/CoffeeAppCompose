@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,13 +22,13 @@ import com.sekhgmainuddin.coffeeapp.features.cart.views.isScrollingUp
 @Preview
 @Composable
 fun OrderHistoryScreen(modifier: Modifier = Modifier) {
-    Column(
+    val scrollState = rememberLazyListState()
+    Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        val scrollState = rememberLazyListState()
         LazyColumn(
-            modifier = Modifier.weight(1f),
-            contentPadding = PaddingValues(20.dp),
+            modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 40.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             state = scrollState
         ) {
@@ -35,10 +36,10 @@ fun OrderHistoryScreen(modifier: Modifier = Modifier) {
                 OrderHistoryItem()
             }
         }
-        AnimatedVisibility(visible = scrollState.isScrollingUp().value) {
+        AnimatedVisibility(visible = scrollState.isScrollingUp().value, modifier = Modifier.align(Alignment.BottomCenter)) {
             PrimaryButton(
                 modifier = Modifier
-                    .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                    .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
                     .fillMaxWidth(),
                 text = "Download"
             )

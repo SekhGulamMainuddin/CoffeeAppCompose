@@ -53,6 +53,17 @@ enum class QuantityType {
             GM500 -> "500gm"
             GM1000 -> "1000gm"
         }
+
+    val category
+        get() = when (this) {
+            S, M, L -> QuantityTypeCategory.SIZE
+            GM250, GM500, GM1000 -> QuantityTypeCategory.WEIGHT
+        }
+}
+
+enum class QuantityTypeCategory {
+    SIZE,
+    WEIGHT
 }
 
 data class OrderHistoryItem(
@@ -67,7 +78,7 @@ data class HistoryItem(
 )
 
 object TempData {
-    val coffeeList = mutableListOf(
+    val coffeeList = mutableStateListOf(
         ItemData(
             UUID.randomUUID().toString(),
             "Cappuccino",
@@ -135,7 +146,7 @@ object TempData {
             label = "Medium Roasted"
         )
     )
-    val beanList = mutableListOf(
+    val beanList = mutableStateListOf(
         ItemData(
             UUID.randomUUID().toString(),
             "Robusta Beans",
@@ -203,7 +214,7 @@ object TempData {
             label = "Medium Roasted"
         )
     )
-    val cartList = mutableListOf(
+    val cartList = mutableStateListOf(
         CartItemData(
             UUID.randomUUID().toString(),
             coffeeList[0],

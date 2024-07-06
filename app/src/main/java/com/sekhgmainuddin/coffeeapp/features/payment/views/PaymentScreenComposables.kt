@@ -53,7 +53,7 @@ fun CreditCardComposable(
                 Color.Transparent,
         ),
         contentPadding = PaddingValues(15.dp),
-        onClick = { /*TODO*/ }) {
+        onClick = onClick) {
         Column(
             modifier = Modifier
                 .fillMaxWidth(),

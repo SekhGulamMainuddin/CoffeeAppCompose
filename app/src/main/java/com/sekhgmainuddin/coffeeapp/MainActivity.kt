@@ -86,6 +86,7 @@ class MainActivity : ComponentActivity() {
                             arguments = Routes.PaymentScreen.arguments,
                         ) {
                             PaymentScreen(
+                                mainNavController,
                                 it.arguments?.getString("totalAmount")!!
                             )
                         }
@@ -217,7 +218,9 @@ fun MainComposable(mainNavController: NavController) {
                 )
             }
             composable(Routes.CartScreen.route) {
-                CartScreen()
+                CartScreen(
+                    navController = mainNavController
+                )
             }
             composable(Routes.FavouritesScreen.route) {
                 FavouritesScreen()

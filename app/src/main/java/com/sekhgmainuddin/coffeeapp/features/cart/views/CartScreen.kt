@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -18,40 +19,57 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.sekhgmainuddin.coffeeapp.core.common.composables.PriceAndPayComposable
+import com.sekhgmainuddin.coffeeapp.core.helpers.format
+import com.sekhgmainuddin.coffeeapp.core.routes.Routes
+import com.sekhgmainuddin.coffeeapp.core.tempData.TempData
 import kotlin.random.Random
 
-@Preview
 @Composable
-fun CartScreen(modifier: Modifier = Modifier) {
+fun CartScreen(modifier: Modifier = Modifier, navController: NavController) {
+    var totalAmount = 0.0
+    TempData.cartList.forEach {
+        it.price.forEach { price ->
+            totalAmount += price.price
+        }
+    }
+
     val scrollState = rememberLazyListState()
-    Column(
+    Box(
         modifier = modifier.fillMaxSize()
     ) {
         LazyColumn(
-            modifier = Modifier.weight(1f),
-            contentPadding = PaddingValues(20.dp),
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(top = 20.dp, bottom = 100.dp, start = 20.dp, end = 20.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             state = scrollState
         ) {
-            items(20) {
-                if (Random.nextBoolean()) {
-                    CartItemViewTypeMultiple()
+            items(TempData.cartList.size) {
+                val cartItemData = TempData.cartList[it]
+                if (cartItemData.price.size == 1) {
+                    CartItemViewTypeSingle(
+                        cartItemData = cartItemData,
+                        index = it
+                    )
                 } else {
-                    CartItemViewTypeSingle()
+                    CartItemViewTypeMultiple(
+                        cartItemData = cartItemData,
+                        index = it
+                    )
                 }
             }
         }
         AnimatedVisibility(
+            modifier = Modifier.align(Alignment.BottomCenter),
             visible = scrollState.isScrollingUp().value,
-//            enter = fadeIn(),
-//            exit = fadeOut(),
         ) {
-            PriceAndPayComposable(totalAmount = "10.40", payButtonText = "Pay") {
-
+            PriceAndPayComposable(totalAmount = totalAmount.format(2), payButtonText = "Pay") {
+                navController.navigate("payment-screen/totalAmount=$totalAmount")
             }
         }
     }
